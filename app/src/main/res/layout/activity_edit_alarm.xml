@@ -34,14 +34,31 @@
         android:background="@color/colorAccent"
         android:padding="5sp"
         android:text="@string/alarm_time"
-        android:textSize="30sp"
+        android:textSize="25sp"
+        app:fontFamily="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_alarm_text_title"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <TextView
+        android:id="@+id/edit_alarm_time_display_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="5sp"
+        android:text="@string/edit_alarm_time_display_new"
+        android:textSize="15sp"
+        android:visibility="invisible"
         app:fontFamily="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_alarm_text_title"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <Button
         android:id="@+id/edit_alarm_button_timePicker"
@@ -61,31 +78,21 @@
         app:layout_constraintTop_toBottomOf="@id/edit_alarm_text_title"
         app:layout_constraintVertical_bias="0.1" />
 
-    <Switch
-        android:id="@+id/edit_alarm_onOff"
+    <Button
+        android:id="@+id/edit_alarm_dontSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_alarm_button_timePicker"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:padding="5sp"
-        android:text="@string/edit_alarm_onOff"
-        android:textSize="20sp"
+        android:background="@color/colorButton"
+        android:onClick="discardChanges"
+        android:padding="10sp"
+        android:text="@string/edit_alarm_dontSave"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_alarm_button_timePicker"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.93" />
 
     <Button
         android:id="@+id/edit_alarm_saveButton"

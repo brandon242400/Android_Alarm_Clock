@@ -73,10 +73,27 @@
             android:id="@+id/second_layout_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:padding="20sp"
             android:text="@string/alarm_time"
-            android:textAlignment="center"
-            android:textSize="30sp"
+            android:textAlignment="textStart"
+            android:textSize="35sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:id="@+id/main_switch_onOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15sp"
+            android:layout_marginRight="15sp"
+            android:onClick="onOff"
+            android:padding="20sp"
+            android:showText="false"
+            android:text="ON   "
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

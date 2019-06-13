@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         shared = getSharedPreferences(SAVE_FILE, Context.MODE_PRIVATE);
         Log.d("Brandon", "Creating Main");
         saveData = new SaveData(shared);
-        Log.d("Brandon", "Getting saved()");
         getSaved();
+        setSwitchCheck();
     }
 
     /**
@@ -40,12 +41,11 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void editAlarm(View view) {
-        Log.d("Brandon", "Starting editAlarm Intent");
+        Log.d("Brandon", "Starting editAlarm Intent and Activity");
         Intent intent = new Intent(this, EditAlarm.class);
         intent.putExtra(HOUR_REFERENCE, timeHour);
         intent.putExtra(MINUTE_REFERENCE, timeMinute);
         intent.putExtra(AM_REFERENCE, AM);
-        Log.d("Brandon", "Calling Intent now!");
         startActivity(intent);
     }
 
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void editSettings(View view) {
+        Log.d("Brandon", "Starting editSettings Intent and Activity");
         Intent intent = new Intent(this, AlarmSettings.class);
         startActivity(intent);
     }
@@ -63,29 +64,49 @@ public class MainActivity extends AppCompatActivity {
      * Method collects saved alarm data from saved file
      */
     private void getSaved() {
-        Log.d("Brandon", "Beginning getSaved()");
-        timeHour = saveData.getInt(SaveData.HOUR_REFERENCE);
-        Log.d("Brandon", "timeHour set");
-        timeMinute = saveData.getInt(SaveData.MINUTE_REFERENCE);
-        Log.d("Brandon", "timeMinute set");
-        AM = saveData.getBool(SaveData.AM_REFERENCE);
-        Log.d("Brandon", "AM set");
-        String minuteText = timeMinute.toString();
-        if (timeMinute < 10) {
-            minuteText = "0" + minuteText;
-        }
-        String am_pm;
-        if (AM) {
-            am_pm = "a.m.";
-        } else {
-            am_pm = "p.m.";
-        }
-        Log.d("Brandon", "Done setting all variables");
+        Log.d("Brandon", "Beginning Main.getSaved()");
         TextView view = findViewById(R.id.second_layout_text);
-        String temp = timeHour.toString() + ":" + minuteText + am_pm;
+        String temp = saveData.getStr(SaveData.TIME_STRING_REFERENCE);
         view.setText(temp);
-        Log.d("Brandon", "Finished setting view and everything");
+        Log.d("Brandon", "Finished Main.getSaved()");
     }
 
+    @Override
+    protected void onResume() {
+        getSaved();
+        super.onResume();
+    }
 
+    /**
+     * Saves the status of the switch
+     *
+     * @param view
+     */
+    public void onOff(View view) {
+        Switch onOff = findViewById(R.id.main_switch_onOff);
+        saveData.save(SaveData.ON_OFF_SWITCH_MAIN, onOff.isChecked());
+        if (onOff.isChecked()) {
+            onOff.setText("ON   ");
+            onOff.setTextColor(getResources().getColor(R.color.MyGreen));
+        } else {
+            onOff.setText("OFF   ");
+            onOff.setTextColor(getResources().getColor(R.color.Black));
+        }
+    }
+
+    /**
+     * Sets the switch to its last position on Activity creation
+     */
+    private void setSwitchCheck() {
+        Switch onOff = findViewById(R.id.main_switch_onOff);
+        boolean on = saveData.getBool(SaveData.ON_OFF_SWITCH_MAIN);
+        onOff.setChecked(on);
+        if (on) {
+            onOff.setText("ON   ");
+            onOff.setTextColor(getResources().getColor(R.color.MyGreen));
+        } else {
+            onOff.setText("OFF   ");
+            onOff.setTextColor(getResources().getColor(R.color.Black));
+        }
+    }
 }

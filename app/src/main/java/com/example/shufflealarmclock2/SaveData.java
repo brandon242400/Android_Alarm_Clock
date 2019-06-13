@@ -11,14 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SaveData extends AppCompatActivity {
 
 
-    protected final static String AM_REFERENCE = "Main_AM_Variable";
-    protected final static String MAYBE_HOUR_REFERENCE = "Possible_Hour_Reference";
-    private SharedPreferences shared;
     protected final static String HOUR_REFERENCE = "Main_Hour_Reference";
     protected final static String MINUTE_REFERENCE = "Main_Minute_Reference";
-    private SharedPreferences.Editor edit;
+    protected final static String AM_REFERENCE = "Main_AM_Variable";
     protected final static String TIME_STRING_REFERENCE = "Main_Time(str)_Reference";
-    protected final static String MAYBE_MINUTE_REFERENCE = "Possible_Hour_Reference";
+    protected final static String MAYBE_MINUTE_REFERENCE = "Possible_Minute_Reference";
+    protected final static String MAYBE_TIME_STRING_REFERENCE = "Possible_Time_String_Reference";
+    protected final static String MAYBE_HOUR_REFERENCE = "Possible_Hour_Reference";
+    protected final static String ON_OFF_SWITCH_MAIN = "Main_OnOffSwitch_Bool";
+    private SharedPreferences shared;
+    private SharedPreferences.Editor edit;
 
     /**
      * Constructor. Initializes all variables defined above that aren't 'final'
@@ -89,7 +91,7 @@ public class SaveData extends AppCompatActivity {
      */
     String getStr(String name) {
         Log.i("Load", "Loading and returning variable saved under '" + name + "'.");
-        return shared.getString(name, " ");
+        return shared.getString(name, "12:00 p.m.");
     }
 
     /**
