@@ -10,4 +10,6 @@
     <string name="edit_alarm_saveChanges">Save Changes</string>
     <string name="edit_alarm_dontSave">Discard Changes</string>
     <string name="edit_alarm_time_display_new">New alarm time: 12:00 p.m.</string>
+    <string name="home_toggle_on">ON   </string>
+    <string name="home_toggle_off">OFF   </string>
 </resources>

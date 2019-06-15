@@ -12,11 +12,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class EditAlarm extends AppCompatActivity {
+
 
     Integer hour;
     Integer minute;
-    boolean AM;
     TextView timeView;
     SaveData saveData;
 
@@ -30,7 +31,7 @@ public class EditAlarm extends AppCompatActivity {
         getSavedTime();
     }
 
-    private void getSavedTime() {                             // Finish
+    private void getSavedTime() {
         Log.d("Brandon", "Beginning getSavedTime()");
         String savedTime = saveData.getStr(SaveData.TIME_STRING_REFERENCE);
         timeView.setText(savedTime);
@@ -52,12 +53,13 @@ public class EditAlarm extends AppCompatActivity {
             minuteSTR = minute.toString();
         }
         if (hour > 12) {
-            hour -= 12;
             minuteSTR += " p.m.";
+            minuteSTR = (hour - 12) + ":" + minuteSTR;
         } else {
             minuteSTR += " a.m.";
+            minuteSTR = hour + ":" + minuteSTR;
         }
-        timeSTR = hour.toString() + ":" + minuteSTR;
+        timeSTR = minuteSTR;
         saveData.save(SaveData.HOUR_REFERENCE, hour);
         saveData.save(SaveData.MINUTE_REFERENCE, minute);
         saveData.save(SaveData.TIME_STRING_REFERENCE, timeSTR);
@@ -85,6 +87,11 @@ public class EditAlarm extends AppCompatActivity {
         view.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Discards all changes to alarm and reverts back to last saved data
+     *
+     * @param view
+     */
     public void discardChanges(View view) {
         Intent intent = new Intent(this, EditAlarm.class);
         overridePendingTransition(0, 0);
@@ -92,6 +99,11 @@ public class EditAlarm extends AppCompatActivity {
         finish();
         overridePendingTransition(0, 0);
         startActivity(intent);
+        saveData.save(SaveData.MAYBE_HOUR_REFERENCE, saveData.getInt(SaveData.HOUR_REFERENCE));
+        saveData.save(SaveData.MAYBE_MINUTE_REFERENCE, saveData.getInt(SaveData.MINUTE_REFERENCE));
+        saveData.save(SaveData.MAYBE_TIME_STRING_REFERENCE, saveData.getStr(SaveData.TIME_STRING_REFERENCE));
+        TextView textView = findViewById(R.id.edit_alarm_time_display_new);
+        textView.setVisibility(View.INVISIBLE);
         saveToast("Changes Discarded");
     }
 }

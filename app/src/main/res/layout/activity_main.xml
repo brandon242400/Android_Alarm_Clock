@@ -90,7 +90,6 @@
             android:onClick="onOff"
             android:padding="20sp"
             android:showText="false"
-            android:text="ON   "
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

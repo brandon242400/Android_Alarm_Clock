@@ -1,5 +1,7 @@
 package com.example.shufflealarmclock2;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -19,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected final static String AM_REFERENCE = "Main_AM_Variable";
     protected final static String SAVE_FILE = "Shuffle_Alarm_Clock_Save_File";
     SharedPreferences shared;
+    AlarmManager alarmMngr;
+    PendingIntent pendingIntent;
+    Intent alarmIntent;
     Integer timeHour;
     Integer timeMinute;
     boolean AM;
@@ -28,11 +35,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        shared = getSharedPreferences(SAVE_FILE, Context.MODE_PRIVATE);
         Log.d("Brandon", "Creating Main");
-        saveData = new SaveData(shared);
         getSaved();
         setSwitchCheck();
+    }
+
+    /**
+     * Constructor used to initialize variables.
+     */
+    public MainActivity() {
+        alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
+        shared = getSharedPreferences(SAVE_FILE, Context.MODE_PRIVATE);
+        saveData = new SaveData(shared);
+        alarmMngr = (AlarmManager) getSystemService(ALARM_SERVICE);
     }
 
     /**
@@ -71,10 +87,23 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Brandon", "Finished Main.getSaved()");
     }
 
+    /**
+     * Added getSaved() to update display when activity is resumed and also making sure the
+     */
     @Override
     protected void onResume() {
         getSaved();
+        // Adjusting the saved alarm to reflect the updated time
+        alarmMngr.cancel(pendingIntent);
+        onOff(findViewById(R.id.main_switch_onOff));
+        // Continuing to normal onResume() functions
         super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
     }
 
     /**
@@ -86,11 +115,19 @@ public class MainActivity extends AppCompatActivity {
         Switch onOff = findViewById(R.id.main_switch_onOff);
         saveData.save(SaveData.ON_OFF_SWITCH_MAIN, onOff.isChecked());
         if (onOff.isChecked()) {
-            onOff.setText("ON   ");
+            // Setting text and color of switch
+            onOff.setText(getString(R.string.home_toggle_on));
             onOff.setTextColor(getResources().getColor(R.color.MyGreen));
+            // Scheduling the alarm
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.HOUR_OF_DAY, saveData.getInt(SaveData.HOUR_REFERENCE));
+            cal.set(Calendar.MINUTE, saveData.getInt(SaveData.MINUTE_REFERENCE));
+            Log.d("Brandon", "Time in Milliseconds = " + cal.getTimeInMillis());
+            alarmMngr.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
         } else {
-            onOff.setText("OFF   ");
+            onOff.setText(getString(R.string.home_toggle_off));
             onOff.setTextColor(getResources().getColor(R.color.Black));
+            alarmMngr.cancel(pendingIntent);
         }
     }
 
@@ -102,10 +139,10 @@ public class MainActivity extends AppCompatActivity {
         boolean on = saveData.getBool(SaveData.ON_OFF_SWITCH_MAIN);
         onOff.setChecked(on);
         if (on) {
-            onOff.setText("ON   ");
+            onOff.setText(getString(R.string.home_toggle_on));
             onOff.setTextColor(getResources().getColor(R.color.MyGreen));
         } else {
-            onOff.setText("OFF   ");
+            onOff.setText(getString(R.string.home_toggle_off));
             onOff.setTextColor(getResources().getColor(R.color.Black));
         }
     }
