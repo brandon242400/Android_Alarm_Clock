@@ -12,4 +12,10 @@
     <string name="edit_alarm_time_display_new">New alarm time: 12:00 p.m.</string>
     <string name="home_toggle_on">ON   </string>
     <string name="home_toggle_off">OFF   </string>
+    <string name="alarm_off_text">Alarm is currently off</string>
+    <string name="time_left">Time left until alarm: </string>
+    <string name="hour">Hour</string>
+    <string name="hours">Hours</string>
+    <string name="minute">Minute</string>
+    <string name="minutes">Minutes</string>
 </resources>
