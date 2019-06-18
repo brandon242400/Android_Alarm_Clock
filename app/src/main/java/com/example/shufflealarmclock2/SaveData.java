@@ -2,13 +2,14 @@ package com.example.shufflealarmclock2;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 
 @SuppressLint("Registered")
-public class SaveData extends AppCompatActivity {
+public class SaveData extends AppCompatActivity implements Serializable {
 
 
     protected final static String HOUR_REFERENCE = "Main_Hour_Reference";
@@ -27,13 +28,8 @@ public class SaveData extends AppCompatActivity {
      */
     @SuppressLint("CommitPrefEdits")
     SaveData(SharedPreferences shared) {
-        Log.d("Save", "SaveData Initialized");
         this.shared = shared;
         edit = this.shared.edit();
-    }
-
-    void changeSaveFileName(String name) {
-
     }
 
     /**
@@ -45,7 +41,6 @@ public class SaveData extends AppCompatActivity {
     void save(String name, int num) {
         edit.putInt(name, num);
         edit.apply();
-        Log.i("Save", "Saved '" + num + "' under name '" + name + "'.");
     }
 
     /**
@@ -57,7 +52,6 @@ public class SaveData extends AppCompatActivity {
     void save(String name, String num) {
         edit.putString(name, num);
         edit.apply();
-        Log.i("Save", "Saved '" + num + "' under name '" + name + "'.");
     }
 
     /**
@@ -69,7 +63,6 @@ public class SaveData extends AppCompatActivity {
     void save(String name, boolean num) {
         edit.putBoolean(name, num);
         edit.apply();
-        Log.i("Save", "Saved '" + num + "' under name '" + name + "'.");
     }
 
     /**
@@ -79,7 +72,6 @@ public class SaveData extends AppCompatActivity {
      * @return int saved under 'name'
      */
     int getInt(String name) {
-        Log.i("Load", "Loading and returning variable saved under '" + name + "'.");
         return shared.getInt(name, 0);
     }
 
@@ -90,7 +82,6 @@ public class SaveData extends AppCompatActivity {
      * @return String saved under 'name'
      */
     String getStr(String name) {
-        Log.i("Load", "Loading and returning variable saved under '" + name + "'.");
         return shared.getString(name, "12:00 p.m.");
     }
 
@@ -102,7 +93,6 @@ public class SaveData extends AppCompatActivity {
      * @return Boolean saved under 'name'
      */
     boolean getBool(String name) {
-        Log.i("Load", "Loading and returning variable saved under '" + name + "'.");
         return shared.getBoolean(name, false);
     }
 }

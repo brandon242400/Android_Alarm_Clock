@@ -4,7 +4,6 @@ package com.example.shufflealarmclock2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -21,9 +20,18 @@ public class EditAlarm extends AppCompatActivity {
     TextView timeView;
     SaveData saveData;
 
+    /*          OVERVIEW OF METHODS
+        onCreate()
+        getSavedTime()
+        saveTime()
+        saveToast()
+        showTimePickerDialog()
+        showNewTime()
+        discardChanges()
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Brandon", "In editAlarm onCreate method");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_alarm);
         saveData = new SaveData(getSharedPreferences(MainActivity.SAVE_FILE, Context.MODE_PRIVATE));
@@ -32,7 +40,6 @@ public class EditAlarm extends AppCompatActivity {
     }
 
     private void getSavedTime() {
-        Log.d("Brandon", "Beginning getSavedTime()");
         String savedTime = saveData.getStr(SaveData.TIME_STRING_REFERENCE);
         timeView.setText(savedTime);
     }
