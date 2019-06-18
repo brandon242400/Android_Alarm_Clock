@@ -51,6 +51,31 @@
         app:layout_constraintTop_toBottomOf="@id/alarm_settings_title"
         app:layout_constraintVertical_bias="0.08" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:padding="15sp"
+        android:text="@string/settings_show_notifications"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alarm_settings_title"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/settings_switch_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="notificationClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alarm_settings_title"
+        app:layout_constraintVertical_bias="0.213" />
+
     <Button
         android:id="@+id/edit_alarm_dontSaveButton"
         android:layout_width="wrap_content"

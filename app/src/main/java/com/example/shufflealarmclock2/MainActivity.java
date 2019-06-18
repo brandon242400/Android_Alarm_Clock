@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
      */
     public void onOff(View view) {
         SwitchCompat onOff = findViewById(R.id.main_switch_onOff);
-        // Setting alarm or making sure it's disabled with setAlarm
+        // Setting/Disabling alarm depending on switch position
         setAlarm(onOff);
         saveData.save(SaveData.ON_OFF_SWITCH_MAIN, onOff.isChecked());
         // Setting text and switch color

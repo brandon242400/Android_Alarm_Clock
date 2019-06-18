@@ -19,6 +19,7 @@
     <string name="minute">Minute</string>
     <string name="minutes">Minutes</string>
     <string name="settings_title">Settings</string>
-    <string name="settings_wake_device">Wake up device if turned off</string>
+    <string name="settings_wake_device">Wake up device for alarm</string>
     <string name="save">Save</string>
+    <string name="settings_show_notifications">Receive notifications from app</string>
 </resources>
