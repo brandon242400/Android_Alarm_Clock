@@ -17,21 +17,19 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     private SaveData saveData;
     private EditAlarm edit;
 
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Log.d("Brandon", "Creating TimePicker fragment thing.");
-        return new TimePickerDialog(getActivity(), this, 12, 0, DateFormat.is24HourFormat(getActivity()));
-    }
-
     TimePickerFragment(SaveData saveData, EditAlarm edit) {
         this.saveData = saveData;
         this.edit = edit;
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return new TimePickerDialog(getActivity(), this, 12, 0, DateFormat.is24HourFormat(getActivity()));
+    }
+
     /**
-     * Puts information from timePicker into temporary save locations in case
-     * user decides to use them.
+     * Puts information from timePicker into temporary save locations in case user decides to use them.
      * After saving, it calls method in EditAlarm to display the new time under the current.
      *
      * @param timePicker
@@ -48,19 +46,21 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             timeString = (i - 12) + ":";
             if (i1 < 10) {
                 timeString += "0" + i1 + " p.m.";
-            } else {
+            }
+            else {
                 timeString += i1 + " p.m.";
             }
-        } else {
+        }
+        else {
             timeString = i + ":";
             if (i1 < 10) {
                 timeString += "0" + i1 + " a.m.";
-            } else {
+            }
+            else {
                 timeString += i1 + " a.m.";
             }
         }
         saveData.save(SaveData.MAYBE_TIME_STRING_REFERENCE, timeString);
-        Log.d("Brandon", "Saved all data as 'maybe'. Waiting for save.");
         edit.showNewTime();
     }
 }

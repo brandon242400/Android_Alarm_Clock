@@ -14,7 +14,6 @@ public class SaveData extends AppCompatActivity implements Serializable {
 
     protected final static String HOUR_REFERENCE = "Main_Hour_Reference";
     protected final static String MINUTE_REFERENCE = "Main_Minute_Reference";
-    protected final static String AM_REFERENCE = "Main_AM_Variable";
     protected final static String TIME_STRING_REFERENCE = "Main_Time(str)_Reference";
     protected final static String MAYBE_MINUTE_REFERENCE = "Possible_Minute_Reference";
     protected final static String MAYBE_TIME_STRING_REFERENCE = "Possible_Time_String_Reference";

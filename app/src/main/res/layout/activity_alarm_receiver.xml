@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBackground"
+    android:orientation="vertical"
+    tools:context=".AlarmReceiver">
+
+
+    <TextView
+        android:id="@+id/alarm_receiver_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="30sp"
+        android:text="Alarm Receiver Title"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/title_font_size"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/dismiss_alarm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButton"
+        android:padding="10sp"
+        android:text="Dismiss\nAlarm"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/snooze_alarm_button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/alarm_receiver_title"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <Button
+        android:id="@+id/snooze_alarm_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButton"
+        android:padding="10sp"
+        android:text="Snooze 1"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dismiss_alarm_button"
+        app:layout_constraintTop_toBottomOf="@+id/alarm_receiver_title"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <Button
+        android:id="@+id/snooze_alarm_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButton"
+        android:padding="10sp"
+        android:text="Snooze 2"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/snooze_alarm_button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dismiss_alarm_button"
+        app:layout_constraintTop_toBottomOf="@+id/snooze_alarm_button1" />
+
+    <Button
+        android:id="@+id/snooze_alarm_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButton"
+        android:padding="10sp"
+        android:text="Snooze 3"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dismiss_alarm_button"
+        app:layout_constraintTop_toBottomOf="@+id/alarm_receiver_title"
+        app:layout_constraintVertical_bias="0.93" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

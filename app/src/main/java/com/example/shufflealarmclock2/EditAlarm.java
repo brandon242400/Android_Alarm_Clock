@@ -56,13 +56,15 @@ public class EditAlarm extends AppCompatActivity {
         String timeSTR, minuteSTR;
         if (minute < 10) {
             minuteSTR = "0" + minute.toString();
-        } else {
+        }
+        else {
             minuteSTR = minute.toString();
         }
         if (hour > 12) {
             minuteSTR += " p.m.";
             minuteSTR = (hour - 12) + ":" + minuteSTR;
-        } else {
+        }
+        else {
             minuteSTR += " a.m.";
             minuteSTR = hour + ":" + minuteSTR;
         }

@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected final static String SAVE_FILE = "Shuffle_Alarm_Clock_Save_File";
     SharedPreferences shared;
     AlarmManager alarmMngr;
-    PendingIntent pendingIntent;
     Intent alarmIntent;
+    PendingIntent pendingIntent;
     Integer timeHour;
     Integer timeMinute;
     boolean AM;
@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             int trackColor = Color.argb(150, 100, 175, 100);
             onOff.getTrackDrawable().setColorFilter(trackColor, PorterDuff.Mode.MULTIPLY);
             onOff.getThumbDrawable().setColorFilter(thumbColor, PorterDuff.Mode.MULTIPLY);
-        } else {
+        }
+        else {
             onOff.setText(getString(R.string.home_toggle_off));
             onOff.setTextColor(getResources().getColor(R.color.Black));
             int thumbColor = Color.argb(255, 80, 80, 80);
@@ -150,7 +151,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             onOff.setText(getString(R.string.home_toggle_on));
             onOff.setTextColor(getResources().getColor(R.color.MyGreen));
 
-        } else {
+        }
+        else {
             onOff.setText(getString(R.string.home_toggle_off));
             onOff.setTextColor(getResources().getColor(R.color.Black));
         }
@@ -159,16 +161,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void setAlarm(SwitchCompat onOff) {
         if (onOff.isChecked()) {
             Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(System.currentTimeMillis());
             cal.set(Calendar.HOUR_OF_DAY, saveData.getInt(SaveData.HOUR_REFERENCE));
             cal.set(Calendar.MINUTE, saveData.getInt(SaveData.MINUTE_REFERENCE));
             if (settingSaveData.getBool(AlarmSettings.DEVICE_WAKEUP_SWITCH)) {
                 alarmMngr.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
                 Log.d("Brandon", "Set alarm to wake up");
-            } else {
+            }
+            else {
                 alarmMngr.setExact(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent);
                 Log.d("Brandon", "Set alarm to NOT wake up");
             }
-        } else {
+        }
+        else {
             alarmMngr.cancel(pendingIntent);
         }
     }
@@ -180,14 +185,16 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         TextView view = findViewById(R.id.main_timeTillAlarm);
         if (!saveData.getBool(SaveData.ON_OFF_SWITCH_MAIN)) {
             view.setText(R.string.alarm_off_text);
-        } else {
+        }
+        else {
             Calendar cal = Calendar.getInstance();
             int currentHour = cal.getTime().getHours();
             int currentMinute = cal.getTime().getMinutes();
             int hoursLeft, minutesLeft;
             if (timeHour >= currentHour) {
                 hoursLeft = timeHour - currentHour;
-            } else {
+            }
+            else {
                 hoursLeft = 24 + (timeHour - currentHour);
             }
             minutesLeft = timeMinute - currentMinute;
@@ -199,13 +206,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             message += hoursLeft + " ";
             if (hoursLeft == 1) {
                 message += getResources().getString(R.string.hour);
-            } else {
+            }
+            else {
                 message += getResources().getString(R.string.hours);
             }
             message += " and " + minutesLeft + " ";
             if (minutesLeft == 1) {
                 message += getResources().getString(R.string.minute);
-            } else {
+            }
+            else {
                 message += getResources().getString(R.string.minutes);
             }
             view.setText(message);
