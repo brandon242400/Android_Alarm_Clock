@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/colorPrimaryBackground"
+    android:orientation="vertical"
+    tools:context=".NotificationHandler">
+
+    <TextView
+        android:id="@+id/notifi_collapsed_text_1"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="false"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="times"
+        android:text="@string/notification_default_title"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/notifi_collapsed_text_2"
+        style="@style/TextAppearance.Compat.Notification.Info"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notifi_collapsed_text_1"
+        android:layout_centerHorizontal="false"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="times"
+        android:text="@string/notification_default_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/notification_default_snooze_duration"
+        android:textAlignment="center"
+        android:textColor="@color/Black"
+        android:textSize="12dp" />
+
+    <ImageButton
+        android:id="@+id/notifi_collapsed_button_snooze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#51034892"
+        android:paddingTop="15dp"
+        android:paddingBottom="30dp"
+        android:scaleX="1.7"
+        android:scaleY="1.4"
+        android:src="@drawable/ic_stat_alarm_clock_image" />
+
+
+</RelativeLayout>

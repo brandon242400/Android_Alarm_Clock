@@ -7,4 +7,5 @@
     <color name="colorButton">#5C6BC0</color>
     <color name="MyGreen">#3F9700</color>
     <color name="Black">#000</color>
+    <color name="colorNotificationTitle">#500000</color>
 </resources>

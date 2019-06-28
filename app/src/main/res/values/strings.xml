@@ -22,4 +22,13 @@
     <string name="settings_wake_device">Wake up device for alarm</string>
     <string name="save">Save</string>
     <string name="settings_show_notifications">Receive notifications from app</string>
+
+    <string name="alarm_small_notification_title_template">Alarm small: %1$s</string>
+
+
+    <string name="action_share">Share</string>
+    <string name="action_reply">Reply</string>
+    <string name="notification_default_title">YOUR ALARM\'S GOING OFF</string>
+    <string name="notification_default_text">Your scheduled alarm is going off.\nPress clock to snooze or here to dismiss</string>
+    <string name="notification_default_snooze_duration">Snooze\n5 min</string>
 </resources>

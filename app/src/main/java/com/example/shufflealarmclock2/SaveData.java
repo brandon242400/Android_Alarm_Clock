@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 
 
-@SuppressLint("Registered")
 public class SaveData extends AppCompatActivity implements Serializable {
 
 
+    // Constants used for data saving and retrieval
     protected final static String HOUR_REFERENCE = "Main_Hour_Reference";
     protected final static String MINUTE_REFERENCE = "Main_Minute_Reference";
     protected final static String TIME_STRING_REFERENCE = "Main_Time(str)_Reference";
@@ -19,6 +19,13 @@ public class SaveData extends AppCompatActivity implements Serializable {
     protected final static String MAYBE_TIME_STRING_REFERENCE = "Possible_Time_String_Reference";
     protected final static String MAYBE_HOUR_REFERENCE = "Possible_Hour_Reference";
     protected final static String ON_OFF_SWITCH_MAIN = "Main_OnOffSwitch_Bool";
+    protected final static String SNOOZE_TIME_DEFAULT = "Alarm_Snooze_Default_Time";
+    protected final static String SNOOZE_TIME_SMALL = "Alarm_Snooze_Small";
+    protected final static String SNOOZE_TIME_MED = "Alarm_Snooze_Med";
+    protected final static String SNOOZE_TIME_BIG = "Alarm_Snooze_Big";
+    protected final static String SNOOZE_CURRENTLY_SET_TO = "Currently_Set_Snooze_Type";
+    protected final static String NOTIFICATION_ID = "Notification_Identification_Number";
+    // Other defined variables
     private SharedPreferences shared;
     private SharedPreferences.Editor edit;
 
@@ -29,6 +36,13 @@ public class SaveData extends AppCompatActivity implements Serializable {
     SaveData(SharedPreferences shared) {
         this.shared = shared;
         edit = this.shared.edit();
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    SaveData() {
+        MainActivity main = MainActivity.getInstance();
+        this.shared = main.shared;
+        this.edit = shared.edit();
     }
 
     /**
@@ -81,7 +95,7 @@ public class SaveData extends AppCompatActivity implements Serializable {
      * @return String saved under 'name'
      */
     String getStr(String name) {
-        return shared.getString(name, "12:00 p.m.");
+        return shared.getString(name, null);
     }
 
     /**

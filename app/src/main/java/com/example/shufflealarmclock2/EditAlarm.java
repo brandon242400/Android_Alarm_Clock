@@ -1,7 +1,6 @@
 package com.example.shufflealarmclock2;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
 public class EditAlarm extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class EditAlarm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_alarm);
-        saveData = new SaveData(getSharedPreferences(MainActivity.SAVE_FILE, Context.MODE_PRIVATE));
+        saveData = new SaveData(getDefaultSharedPreferences(this));
         timeView = findViewById(R.id.edit_alarm_time_display);
         getSavedTime();
     }
